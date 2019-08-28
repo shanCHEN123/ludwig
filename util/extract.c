@@ -80,8 +80,8 @@ int reverse_byte_order_ = 0;   /* Switch for bigendian input */
 int input_binary_ = -1;        /* Format of input detected from meta data */
 int output_binary_ = 0;        /* Switch for format of final output */
 int is_velocity_ = 0;          /* Switch to identify velocity field */
-int output_index_ = 0;         /* For ASCII output, include (i,j,k) indices */
-int output_vtk_ = 0;           /* Write ASCII VTK header */
+int output_index_ = 1;         /* For ASCII output, include (i,j,k) indices */
+int output_vtk_ = 1;           /* Write ASCII VTK header */
 
 int output_lcs_ = 0;
 int output_lcd_ = 0;
@@ -307,6 +307,14 @@ int extract_driver(const char * filename, int version) {
 	write_vtk_header(fp_data, nrec_, ntargets, "composition",
 			 VTK_SCALARS);
       }
+    else if (nrec_ == 2 && strncmp(stub_, "ternary", 3) == 0) {
+            write_vtk_header(fp_data, nrec_, ntargets, "composition",
+                             VTK_SCALARS);
+        }
+        else if (nrec_ == 2 && strncmp(stub_, "surfactant1", 3) == 0) {
+            write_vtk_header(fp_data, nrec_, ntargets, "composition",
+                             VTK_SCALARS);
+        }
       else {
 	/* Assume scalars */
 	write_vtk_header(fp_data, nrec_, ntargets, stub_, VTK_SCALARS);

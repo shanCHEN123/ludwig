@@ -29,6 +29,8 @@ nint=1000	# Increment
 nend=10000	# End timestep
 ngroup=1	# Number of output groups
 
+surfactant=1
+ternary=1
 vel=1		# Switch for velocity 
 q=1		# Switch for Q-tensor
 phi=0		# Switch for binary fluid
@@ -47,7 +49,18 @@ if vel==1:
 	os.system('rm filelist_vel')
 	for i in range(nstart,nend+nint,nint):
 		os.system('ls -t1 vel-%08.0d.00%d-001 >> filelist_vel' % (i,ngroup))
-
+if ternary==1:
+    metafile.append('ternary.00%d-001.meta' % ngroup)
+    filelist.append('filelist_ternary')
+    os.system('rm filelist_ternary')
+    for i in range(nstart,nend+nint,nint):
+        os.system('ls -t1 phi-%08.0d.00%d-001 >> filelist_ternary' % (i,ngroup))
+if surfactant==1:
+    metafile.append('surfactant.00%d-001.meta' % ngroup)
+    filelist.append('filelist_surfactant')
+    os.system('rm filelist_surfactant')
+    for i in range(nstart,nend+nint,nint):
+        os.system('ls -t1 phi-%08.0d.00%d-001 >> filelist_surfactant' % (i,ngroup))
 if q==1:
 	metafile.append('q.00%d-001.meta' % ngroup)
 	filelist.append('filelist_q')

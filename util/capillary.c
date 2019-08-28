@@ -186,7 +186,7 @@ int main(int argc, char ** argv) {
 	  n = ymax*zmax*i + zmax*j + k;
 
 	  map_in[n] = MAP_BOUNDARY;
-	  if (output_type == STATUS_WITH_H) { map_h[n] = 0.0; }
+	  if (output_type == STATUS_WITH_H) { map_h1[n] = 0.0; }
 	  if (output_type == STATUS_WITH_C_H) { map_h[n] = 0.0; map_c[n] = 0.0; }
 	  map_sig[n] = 0.0;
 
